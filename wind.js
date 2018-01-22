@@ -26,19 +26,23 @@ function direction(val){
 	}
 }
 
+
 function convertSpeed(num){ // API gives value in m*s^-1, wwant in mph, double check when finished
 	return num*2.23694;
 }
 
-var requestURL = "https://api.weather.gov/gridpoints/MTR/89,91";
+var requestURL = 'https://api.weather.gov/gridpoints/MTR/89,91'; // json data for Davenport CA
 var request = new XMLHttpRequest();
 request.open('GET', requestURL);
 request.responseType = 'json';
 request.send();
+alert("hello2");
 request.onload = function() {
 	var data = request.response;
-	alert("alive?");
-	var directions []= data["properties"]["windDirection"]["values"];
+	alert("hello3");
+	//alert(data["id"]);
+	/*var directions []= data["properties"]["windDirection"]["values"];
 	var magnitudes []= data["properties"]["windSpeed"]["values"];
 	alert(directions[0]["value"]);
+	*/
 }

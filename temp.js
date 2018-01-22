@@ -5,6 +5,5 @@ request.responseType = 'json';
 request.send();
 request.onload = function() {
 	var tideData = request.response;
-	alert(tideData["data"][0]["v"]);
 	document.getElementById("temp").innerHTML = "The Current Water Temperature in Monterey is " + tideData["data"][0]["v"] + " degrees Fahreneheit";
 }
