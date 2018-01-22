@@ -1,9 +1,28 @@
 <html>
+	<style>
+	#map {
+		height: 100%;
+	}
+	html, body{
+		height: 100%;
+		margin: 0;
+		padding:0;
+	}
+	</style>
 	<body>
 		<h1 id = "title">GO SURF BUDDY!</h1>
 		<h1 id = "swell"> Swell</h1>
 		<h1 id = "tides">Tides</h1>
-		<h1 id = "wind">Wind</h3>
-		<h1 id = "traffic">Traffic</h4>
+			
+		<h1>Wind</h1>
+			<p id="wind"></p>
+			<script src="wind.js"></script>
+		<h1>Water Temperature</h1>
+			<p id="temp"></p>
+			<script src="temp.js"></script>
+		<h1>Traffic</h4>
+			<div id="map"></div>
+			<script src="traffic.js"></script>
+			<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDpW4XsD9S3yJdENJ4Mems1f1Obw_bVlGk&callback=initMap"type="text/javascript"></script>
 	</body>
 </html>
