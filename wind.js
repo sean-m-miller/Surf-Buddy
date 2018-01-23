@@ -91,11 +91,14 @@ request.responseType = 'json';
 request.send();
 alert("hello2");
 request.onload = function() {
+	alert("Inside onload");
 	var dir, spd, tod, dirCnt, spdCnt, date1, date2, time1, time2; // direction, magnitude, time of day, direction offset, speed offset, date1 & time1 are for DIRECTION;
 	var data = request.response;
 	dirCnt = 0;
 	spdCnt = 0;
+	alert("before while loop");
 	while(dirCnt < data["properties"]["windDirection"]["values"].length && spdCnt < data["properties"]["windSpeed"]["values"].length){ // Only add data where speed and direction are temporally matched (there are instances where they lose sync)
+		alert("inside while loop");
 		date1 = data["properties"]["windDirection"]["values"][dirCnt]["validTime"].slice(5, 10);
 		time1 = data["properties"]["windDirection"]["values"][dirCnt]["validTime"].slice(11, 13);
 		date2 = data["properties"]["windSpeed"]["values"][spdCnt]["validTime"].slice(5, 10);
@@ -120,26 +123,4 @@ request.onload = function() {
 			dirCnt++;
 		}
 	}
-	/*
-	alert(data["properties"]["windDirection"]["values"].length);
-	alert("hello3");
-	alert(data["id"]);
-	alert(data["properties"]["windDirection"]["values"][0]["value"]);
-	alert(data["properties"]["windDirection"]["values"][0]["validTime"].length);
-	alert(data["properties"]["windDirection"]["values"][0]["validTime"].slice(11, 13));
-	*/
-	/*for(var i = 0; i < data["properties"]["windDirection"]["values"].length && i < data["properties"]["windSpeed"]["values"].length; i++){//loop, watch for errors
-		tod = (tod+=3)%24;
-		if(data["properties"]["windDirection"]["values"][i]["validTime"] === data["properties"]["windSpeed"]["values"][i]["validTime"]){
-			dir = data["properties"]["windDirection"]["values"][i]["value"];
-			mag = data["properties"]["windSpeed"]["values"][i]["value"];
-			//assign direction string
-			
-			
-			//create a textnode and append to DOM with information
-		
-		
-		}
-		*/
 }
-
