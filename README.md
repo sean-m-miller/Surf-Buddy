@@ -1,2 +1,2 @@
 # Surf-Buddy
-Presents current surf, tide, weather, and traffic data to help decide where to go surf!
+Presents current surf, tide, wind, and traffic data to help you decide where to surf. Coming soon...
