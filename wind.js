@@ -90,49 +90,53 @@ function addText(dir, spd, time, date, dcnt){
 }
 
 //alert("hello");
-var requestURL = 'https://api.weather.gov/gridpoints/MTR/89,91'; // json data for Davenport CA
-var request = new XMLHttpRequest();
-request.open('GET', requestURL);
-request.responseType = 'json';
-request.send();
-//alert("hello2");
-request.onload = function() {
-	alert("Inside onload");
-	var dir, spd, tod, dirCnt, spdCnt, date1, date2, time1, time2, daycount, startdate; // direction, magnitude, time of day, direction offset, speed offset, date1 & time1 are for DIRECTION;
-	var data = request.response;
-	dirCnt = 0;
-	spdCnt = 0;
-	//alert("before while loop");
-	daycount = 0;
-	startdate = data["properties"]["windDirection"]["values"][dirCnt]["validTime"].slice(5, 10);
-	while(dirCnt < data["properties"]["windDirection"]["values"].length && spdCnt < data["properties"]["windSpeed"]["values"].length){ // Only add data where speed and direction are temporally matched (there are instances where they lose sync)
-		//alert("inside while loop");
-		date1 = data["properties"]["windDirection"]["values"][dirCnt]["validTime"].slice(5, 10);
-		time1 = data["properties"]["windDirection"]["values"][dirCnt]["validTime"].slice(11, 13);
-		date2 = data["properties"]["windSpeed"]["values"][spdCnt]["validTime"].slice(5, 10);
-		time2 = data["properties"]["windSpeed"]["values"][spdCnt]["validTime"].slice(11, 13);
-		if(date1 === date2){
-			if (date1 !== startdate){
-				startdate = date1;
-				daycount++;
+function run(){
+	var requestURL = 'https://api.weather.gov/gridpoints/MTR/89,91'; // json data for Davenport CA
+	var request = new XMLHttpRequest();
+	request.open('GET', requestURL);
+	request.responseType = 'json';
+	request.send();
+	//alert("hello2");
+	request.onload = function() {
+		alert("Inside onload");
+		var dir, spd, tod, dirCnt, spdCnt, date1, date2, time1, time2, daycount, startdate; // direction, magnitude, time of day, direction offset, speed offset, date1 & time1 are for DIRECTION;
+		var data = request.response;
+		dirCnt = 0;
+		spdCnt = 0;
+		//alert("before while loop");
+		daycount = 0;
+		startdate = data["properties"]["windDirection"]["values"][dirCnt]["validTime"].slice(5, 10);
+		while(dirCnt < data["properties"]["windDirection"]["values"].length && spdCnt < data["properties"]["windSpeed"]["values"].length){ // Only add data where speed and direction are temporally matched (there are instances where they lose sync)
+			//alert("inside while loop");
+			date1 = data["properties"]["windDirection"]["values"][dirCnt]["validTime"].slice(5, 10);
+			time1 = data["properties"]["windDirection"]["values"][dirCnt]["validTime"].slice(11, 13);
+			date2 = data["properties"]["windSpeed"]["values"][spdCnt]["validTime"].slice(5, 10);
+			time2 = data["properties"]["windSpeed"]["values"][spdCnt]["validTime"].slice(11, 13);
+			if(date1 === date2){
+				if (date1 !== startdate){
+					startdate = date1;
+					daycount++;
+				}
+				if(time1 === time2){
+					addText(data["properties"]["windDirection"]["values"][dirCnt]["value"], data["properties"]["windSpeed"]["values"][spdCnt]["value"], time1, date1, daycount); //direction, speed, time format
+					spdCnt++;
+					dirCnt++;
+				}
+				else if(time1 > time2){ // direction skipped and entry, update spdCnt
+					spdCnt ++;
+				}
+				else{
+					dirCnt ++;
+				}
 			}
-			if(time1 === time2){
-				addText(data["properties"]["windDirection"]["values"][dirCnt]["value"], data["properties"]["windSpeed"]["values"][spdCnt]["value"], time1, date1, daycount); //direction, speed, time format
+			else if(date1 > date2){ // direction skipped, update spdCnt
 				spdCnt++;
-				dirCnt++;
-			}
-			else if(time1 > time2){ // direction skipped and entry, update spdCnt
-				spdCnt ++;
 			}
 			else{
-				dirCnt ++;
+				dirCnt++;
 			}
-		}
-		else if(date1 > date2){ // direction skipped, update spdCnt
-			spdCnt++;
-		}
-		else{
-			dirCnt++;
 		}
 	}
 }
+
+run();
