@@ -8,8 +8,14 @@ function run(){
 	request.onload = function() {
 		alert("inload");
 		var tideData = request.response;
-		alert(tideData[0]["localTimestamp"]);
-		//document.getElementById("temp").innerHTML = "The Current Water Temperature in Monterey is " + tideData["data"][0]["v"] + " degrees Fahreneheit";
+		//var d = new Date(0);
+		for(var i = 0; i < tideData.length; i++){
+			var time = new Date(tideData[i]["localTimestamp"] * 1000); //doesn't account for milliseconds
+			alert(time);
+			String(time);
+			alert(typeof(time));
+			
+		}
 	}
 }
 
