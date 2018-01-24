@@ -12,8 +12,8 @@ function run(){
 		for(var i = 0; i < tideData.length; i++){
 			var time = new Date(tideData[i]["localTimestamp"] * 1000); //doesn't account for milliseconds
 			alert(time);
-			String(time);
-			alert(typeof(time));
+			var newString = JSON.stringify(time);
+			alert(typeof(newString));
 			
 		}
 	}
