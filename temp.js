@@ -5,8 +5,8 @@ function run(){
 	request.responseType = 'json';
 	request.send();
 	request.onload = function() {
-		var tideData = request.response;
-		document.getElementById("temp").innerHTML = "The Current Water Temperature in Monterey is " + tideData["data"][0]["v"] + " degrees Fahreneheit";
+		var Data = request.response;
+		document.getElementById("temp").innerHTML = "The Current Water Temperature in Monterey is " + Data["data"][0]["v"] + " degrees Fahreneheit";
 	}
 }
 

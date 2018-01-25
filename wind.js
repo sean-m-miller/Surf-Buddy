@@ -86,6 +86,8 @@ function addText(dir, spd, time, date, dcnt){
 	newEl.appendChild(newText);
 	var position = document.getElementById("day"+dcnt);
 	position.append(newEl);
+	position2 = document.getElementById("d"+dcnt);
+	position2.innerHTML = date;
 	//alert(spd + " mph " + dir + " wind at " + time + " on " + date);
 }
 
