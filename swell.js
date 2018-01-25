@@ -64,7 +64,43 @@ function addWords(str, startDate, dcnt){
 	var month = startDate.slice(0, 2);
 	var day = startDate.slice(3, 5);
 	//left off here, make format same as for wind
-	position2.innerHTML = startDate;
+	if(month === "01"){
+		month = "Jan";
+	}
+	else if(month === "02"){
+		month = "Feb";
+	}
+	else if(month === "03"){
+		month = "Mar";
+	}
+	else if(month === "04"){
+		month = "Apr";
+	}
+	else if(month === "05"){
+		month = "May";
+	}
+	else if(month === "06"){
+		month = "Jun";
+	}
+	else if(month === "07"){
+		month = "Jul";
+	}
+	else if(month === "08"){
+		month = "Aug";
+	}
+	else if(month === "09"){
+		month = "Sep";
+	}
+	else if(month === "10"){
+		month = "Oct";
+	}
+	else if(month === "11"){
+		month = "Nov";
+	}
+	else{
+		month = "Dec";
+	}
+	position2.innerHTML = month + " " + day;
 }
 
 run();
