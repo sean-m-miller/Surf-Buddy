@@ -1,4 +1,7 @@
 <html>
+	<head>
+		<link rel="stylesheet" href="styles.css">
+	</head>
 	<style>
 	#map {
 		height: 100%;
@@ -7,57 +10,73 @@
 		height: 100%;
 		margin: 0;
 		padding:0;
+		background-color: rgb(135,206,250);
 	}
+	h1.center{
+		text-align: center;
+	}
+	h2.right{
+		text-align: right;
+	}
+	h2.left{
+		text-align: left;
+	}
+	p.right{
+		text-align: right;
+	}
+	p.left{
+		text-align: left;
+	}	
 	</style>
 	<body>
-		<h1 id = "title">GO SURF BUDDY!</h1>
-		<h1 id = "swell"> Swell</h1>
-			<h2 id="D0">0</h2>
-			<ul id="Day0"></ul>
-			<h2 id="D1">1</h2>
-			<ul id="Day1"></ul>
-			<h2 id="D2">2</h2>
-			<ul id="Day2"></ul>
-			<h2 id="D3">3</h2>
-			<ul id="Day3"></ul>
+		<h1 class="center" id = "title">GO SURF BUDDY!</h1>
+		<h1 class="center" id = "swell"> Swell</h1>
+			<h2 class="left" id="D0">0</h2>
+			<ul class="left" id="Day0"></ul>
+			<h2 class="right" id="D1">1</h2>
+			<ul class="right" id="Day1"></ul>
+			<h2 class="left" id="D2">2</h2>
+			<ul class="left" id="Day2"></ul>
+			<h2 class="right" id="D3">3</h2>
+			<ul class="right" id="Day3"></ul>
 			<script src="swell.js"></script>
 			<a href="http://magicseaweed.com"><img src="https://im-1-uk.msw.ms/msw_powered_by.png"></a>
-		<h1 id = "tides">Tides</h1>
-			<h2 id="date0"></h2>
-				<p id="e00"></p>
-				<p id="e01"></p>
-				<p id="e02"></p>
-				<p id="e03"></p>
-			<h2 id="date1"></h2>
-				<p id="e10"></p>
-				<p id="e11"></p>
-				<p id="e12"></p>
-				<p id="e13"></p>
-			<h2 id="date2"></h2>
-				<p id="e20"></p>
-				<p id="e21"></p>
-				<p id="e22"></p>
-				<p id="e23"></p>
-			<h2 id="date3"></h2>
-				<p id="e30"></p>
-				<p id="e31"></p>
-				<p id="e32"></p>
-				<p id="e33"></p>
+		<h1 class="center" id = "tides">Tides</h1>
+			<h2 class="left" id="date0"></h2>
+				<p class="left" id="e00"></p>
+				<p class="left" id="e01"></p>
+				<p class="left" id="e02"></p>
+				<p class="left" id="e03"></p>
+			<h2 class="right" id="date1"></h2>
+				<p class="right" id="e10"></p>
+				<p class="right" id="e11"></p>
+				<p class="right" id="e12"></p>
+				<p class="right" id="e13"></p>
+			<h2 class="left" id="date2"></h2>
+				<p class="left" id="e20"></p>
+				<p class="left" id="e21"></p>
+				<p class="left" id="e22"></p>
+				<p class="left" id="e23"></p>
+			<h2 class="right" id="date3"></h2>
+				<p class="right" id="e30"></p>
+				<p class="right" id="e31"></p>
+				<p class="right" id="e32"></p>
+				<p class="right" id="e33"></p>
 			<script src="tide.js"></script>
-		<h1>Wind</h1>
-			<h2 id="d0">0</h2>
-			<ul id="day0"></ul>
-			<h2 id="d1">1</h2>
-			<ul id="day1"></ul>
-			<h2 id="d2">2</h2>
-			<ul id="day2"></ul>
-			<h2 id="d3">3</h2>
-			<ul id="day3"></ul>
+		<h1 class="center">Wind</h1>
+			<h2 class="left" id="d0">0</h2>
+			<ul class="left" id="day0"></ul>
+			<h2 class="right" id="d1">1</h2>
+			<ul class="right" id="day1"></ul>
+			<h2 class="left" id="d2">2</h2>
+			<ul class="left" id="day2"></ul>
+			<h2 class="right" id="d3">3</h2>
+			<ul class="right" id="day3"></ul>
 			<script src="wind.js"></script>
-		<h1>Water Temperature</h1>
+		<h1 class="center">Water Temperature</h1>
 			<p id="temp"></p>
 			<script src="temp.js"></script> <!-- WORKS WHEN THIS LINE IS COMMENTED OUT --> 
-		<h1>Traffic</h4>
+		<h1 class="center">Traffic</h4>
 			<div id="map"></div>
 			<script src="traffic.js"></script>
 			<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDpW4XsD9S3yJdENJ4Mems1f1Obw_bVlGk&callback=initMap"type="text/javascript"></script>

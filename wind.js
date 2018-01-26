@@ -100,7 +100,7 @@ function run(){
 	request.send();
 	//alert("hello2");
 	request.onload = function() {
-		alert("Inside onload");
+		//alert("Inside onload");
 		var dir, spd, tod, dirCnt, spdCnt, date1, date2, time1, time2, daycount, startdate; // direction, magnitude, time of day, direction offset, speed offset, date1 & time1 are for DIRECTION;
 		var data = request.response;
 		dirCnt = 0;
