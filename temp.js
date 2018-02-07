@@ -6,6 +6,7 @@ function run(){
 	request.send();
 	request.onload = function() {
 		var Data = request.response;
+		//Simple JSON parse, only getting water temp from this API
 		document.getElementById("temp").innerHTML = "The Current Water Temperature in Monterey is " + Data["data"][0]["v"] + " degrees Fahreneheit";
 	}
 }
