@@ -1,4 +1,4 @@
-// http://api.wunderground.com/api/d3e330d211d368e8/tide/q/CA/Santa_Cruz.json
+// Pull data from weather underground, slice tide data
 function run(){
 	var requestURL = 'http://api.wunderground.com/api/d3e330d211d368e8/tide/q/CA/Santa_Cruz.json';
 	var request = new XMLHttpRequest();
@@ -10,7 +10,6 @@ function run(){
 		var timeStamp, type, startDate, height, time, position, position2;
 		var dcnt = 0;
 		var entry = 0;
-		alert(data["tide"]["tideSummary"][1]["data"]["height"].length);
 		for(var i = 0; i < data["tide"]["tideSummary"].length; i++){
 			timestamp = data["tide"]["tideSummary"][i]["date"]["pretty"];
 			date = timestamp.slice(timestamp.length-8, timestamp.length-6); // day of month
@@ -39,6 +38,7 @@ function run(){
 						month = timestamp.slice(16, timestamp.length - 7);
 					}
 				}
+				//Create and push DOM element
 				position2 = document.getElementById("date"+dcnt);
 				position2.innerHTML = month + " " + date;
 				time = timestamp.slice(0, 8);
