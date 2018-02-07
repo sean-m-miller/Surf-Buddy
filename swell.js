@@ -1,23 +1,20 @@
-function run(){
+function run(){ //by wrapping script in run(), scope of variables is limited to swell.js
+	//API request "plumbing"
 	var requestURL = 'http://magicseaweed.com/api/825794d8004ef7c2292c48301cb53d08/forecast/?spot_id=163&units=us&fields=localTimestamp,swell.*,components';
 	var request = new XMLHttpRequest();
 	request.open('GET', requestURL);
 	request.responseType = 'json';
 	request.send();
-	alert("swell0");
 	request.onload = function() {
-		//alert("inload");
 		var tideData = request.response;
 		var startDate = false;
 		var dcnt = 0;
+		//JSON data has loaded, parse away!
 		for(var i = 0; i < tideData.length; i++){
 			var timeStamp = new Date(tideData[i]["localTimestamp"] * 1000); //doesn't account for milliseconds
-			//alert(timeStamp);
 			var str = JSON.stringify(timeStamp);
 			var date = str.slice(6, 11);
-			//alert(date + "date");
 			var time = str.slice(12, 14);
-			//alert(time + "time"); 
 			if(startDate === false){
 				startDate = date;
 			}
@@ -25,7 +22,7 @@ function run(){
 				startDate = date;
 				dcnt++;
 			}
-			if(time === "06"){
+			if(time === "06"){ // 6am swell forecast
 				var first = " 6am     " + tideData[i]["swell"]["minBreakingHeight"] + " - " + tideData[i]["swell"]["maxBreakingHeight"] + " ft";
 				first+= " Primary Swell: " + tideData[i]["swell"]["components"]["primary"]["height"] + " ft at " + tideData[i]["swell"]["components"]["primary"]["period"];
 				first+=" seconds from " + tideData[i]["swell"]["components"]["primary"]["compassDirection"];
@@ -33,7 +30,7 @@ function run(){
 				first+=" seconds from " + tideData[i]["swell"]["components"]["secondary"]["compassDirection"];
 				addWords(first, startDate, dcnt);
 			}
-			if(time === "12"){
+			if(time === "12"){ // 12am swell forecast
 				var second = " 12pm     " + tideData[i]["swell"]["minBreakingHeight"] + " - " + tideData[i]["swell"]["maxBreakingHeight"] + " ft";
 				second+= " Primary Swell: " + tideData[i]["swell"]["components"]["primary"]["height"] + " ft at " + tideData[i]["swell"]["components"]["primary"]["period"];
 				second+=" seconds from " + tideData[i]["swell"]["components"]["primary"]["compassDirection"];
@@ -41,7 +38,7 @@ function run(){
 				second+=" seconds from " + tideData[i]["swell"]["components"]["secondary"]["compassDirection"];
 				addWords(second, startDate, dcnt);
 			}
-			if(time === "18"){
+			if(time === "18"){ // 6pm swell forecast
 				var third = " 6pm     " + tideData[i]["swell"]["minBreakingHeight"] + " - " + tideData[i]["swell"]["maxBreakingHeight"] + " ft";
 				third+= " Primary Swell: " + tideData[i]["swell"]["components"]["primary"]["height"] + " ft at " + tideData[i]["swell"]["components"]["primary"]["period"];
 				third+=" seconds from " + tideData[i]["swell"]["components"]["primary"]["compassDirection"];
@@ -49,12 +46,12 @@ function run(){
 				third+=" seconds from " + tideData[i]["swell"]["components"]["secondary"]["compassDirection"];
 				addWords(third, startDate, dcnt);
 			}
-			//alert(tideData[i]["swell"]["minBreakingHeight"] + " - " + tideData[i]["swell"]["maxBreakingHeight"]);
 		}
 	}
 }
 
 function addWords(str, startDate, dcnt){
+	//Create a new swell forecast DOM element
 	var position = document.getElementById("Day"+dcnt);
 	var newEl = document.createElement('li');
 	var newText = document.createTextNode(str);
@@ -100,6 +97,7 @@ function addWords(str, startDate, dcnt){
 	else{
 		month = "Dec";
 	}
+	//push to DOM
 	position2.innerHTML = month + " " + day;
 }
 
