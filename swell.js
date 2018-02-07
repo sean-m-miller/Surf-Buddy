@@ -60,7 +60,6 @@ function addWords(str, startDate, dcnt){
 	var position2 = document.getElementById("D"+dcnt);
 	var month = startDate.slice(0, 2);
 	var day = startDate.slice(3, 5);
-	//left off here, make format same as for wind
 	if(month === "01"){
 		month = "Jan";
 	}
